@@ -26,5 +26,11 @@
     <ClInclude Include="Abstract Base.h">
       <Filter>Header Files\task1</Filter>
     </ClInclude>
+    <ClInclude Include="customExceptions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LinearEquation.h">
+      <Filter>Header Files\task1</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
