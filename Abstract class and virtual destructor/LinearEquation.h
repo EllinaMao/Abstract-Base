@@ -27,19 +27,19 @@ public:
                 throw NoSolutionsException();
             }
             short size = 1;
-            double* root = new double[size]; 
+            auto* root = new double[size]; 
             root[0] = -mB / mK;
             mRoots.SetRoot(root, size);
+            delete[] root;
             return;
         }
         catch (const InfiniteSolutionsException& e) {
             std::cout << e.what() << std::endl;
+            mRoots.SetState(std::string("Infinite solutions"));
         }
         catch (const NoSolutionsException& e) {
             std::cerr << e.what() << std::endl;
-        }
-        catch (...) {
-            std::cerr << "An unknown error occurred." << std::endl;
+            mRoots.SetState(std::string("No solution"));
         }
     }
 

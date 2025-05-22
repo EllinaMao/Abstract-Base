@@ -6,12 +6,16 @@
 struct EquationRoots {
 private:
 	double* mRoots;
-	string state;
+	std::string mState;
 	size_t mCount;
-
+	
 
 public:
-	void SetRoot(double* roots, size_t count) {
+	void SetState(std::string const& state) {
+		mState = state;
+	}
+
+	void SetRoot(double const* roots, size_t count) {
 		if (count <= 0) {
 			mRoots = nullptr;
 			return;
@@ -24,27 +28,33 @@ public:
 			mRoots[i] = roots[i];
 		}
 		mCount = count;
+		mState = std::to_string(mCount) + (mCount == 1 ? " root" : " roots");	
 	}
-	EquationRoots() : mRoots(nullptr), mCount(0), state("No Roots") {}
-	EquationRoots(double* roots, size_t count) : mCount(count) {
+
+
+	EquationRoots() : mRoots(nullptr), mState("No Roots"), mCount(0) {}
+
+	EquationRoots(double const* roots, size_t count) : mCount(count) {
 		if (count <= 0) {
 			mRoots = nullptr;
-			state = "No Roots";
+			mState = "No Roots";
 			return;
 		}
 		mRoots = new double[mCount];
-		state = std::to_string(count) + " roots";
+		mState = std::to_string(mCount) + (mCount == 1 ? " root" : " roots");		
 		for (size_t i = 0; i < mCount; ++i) {
 			mRoots[i] = roots[i];
 		}
 	}
-	EquationRoots(double* roots) {
+	explicit EquationRoots(double const* roots) {
 		mCount++;
 		mRoots = new double[mCount];
+		mState = std::to_string(mCount) + (mCount == 1 ? " root" : " roots");
 		for (size_t i = 0; i < mCount; ++i) {
 			mRoots[i] = roots[i];
 		}
 	}
+
 	EquationRoots(const EquationRoots& other) : mRoots(nullptr), mCount(other.mCount) {
 		if (mCount > 0) {
 			mRoots = new double[mCount];
@@ -61,6 +71,7 @@ public:
        delete[] mRoots;  
        mCount = other.mCount;  
        mRoots = nullptr;  
+	   mState = other.mState;
        if (mCount > 0) {  
            mRoots = new double[mCount];  
            for (size_t i = 0; i < mCount; ++i) {  
@@ -71,13 +82,14 @@ public:
     }
 
 	void AddRoot() {
-		double* newRoots = new double[mCount + 1];
+		auto* newRoots = new double[mCount + 1];
 		for (size_t i = 0; i < mCount; ++i) {
 			newRoots[i] = mRoots[i];
 		}
 		delete[] mRoots;
 		mRoots = newRoots;
 		mCount++;
+		mState = std::to_string(mCount) + (mCount == 1 ? " root" : " roots");
 	}
 
 	~EquationRoots() {
@@ -87,12 +99,14 @@ public:
 		delete[] mRoots;
 		mRoots = nullptr;
 	}
+
 	void printRoots() const {
 		if (!mRoots) {
-			std::cout << "No roots" << std::endl;
+			std::cout << mState << std::endl;
 			return;
 		}
 		
+		std::cout << mState << std::endl;
 		for (size_t i = 0; i < mCount; ++i) {
 			std::cout << mRoots[i] << " ";
 		}

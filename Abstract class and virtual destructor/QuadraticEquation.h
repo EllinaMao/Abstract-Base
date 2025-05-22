@@ -16,7 +16,8 @@ private:
 public:
     QuadraticEquation() : mA(0), mB(0), mC(0) {}
     QuadraticEquation(double a, double b, double c) : mA(a), mB(b), mC(c) {
-        roots();
+        this->roots();
+        
     }
 
     void roots() override {
@@ -31,33 +32,38 @@ public:
             }
             else if (D == 0) {
                 short size = 1;
-                double* rootPtr = new double[size];
-                rootPtr[0] = -mB / (2 * mA);
-                mRoots.SetRoot(rootPtr, size);
+                auto* roots = new double[size];
+                roots[0] = -mB / (2 * mA);
+                mRoots.SetRoot(roots, size);
+				delete[] roots;
                 return;
             }
             else {
 				short size = 2;
-                double* roots = new double[size];
+                auto* roots = new double[size];
                 roots[0] = (-mB + sqrt(D)) / (2 * mA);
                 roots[1] = (-mB - sqrt(D)) / (2 * mA);
                 mRoots.SetRoot(roots, size);
+                delete[] roots;
+
                 return;
             }
         }
         catch (const InfiniteSolutionsException& e) {
+            mRoots.SetState(std::string("Infinite solutions"));
             std::cerr << e.what() << std::endl;
         }
         catch (const NoSolutionsException& e) {
             std::cerr << e.what() << std::endl;
+            mRoots.SetState(std::string("No solution"));
         }
         catch (const LinearEquationException& e) {
             std::cerr << e.what() << std::endl;
+            mRoots.SetState(std::string("This is linear equation"));
         }
-        catch (...) {
-            std::cerr << "An unknown error occurred." << std::endl;
-        }
+
     }
+
     void showRoot() override {
         std::cout << "Root(s) of the quadratic equation: ";
         mRoots.printRoots();

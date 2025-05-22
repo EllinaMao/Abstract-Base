@@ -29,6 +29,8 @@ Ellipse — эллипс с заданными координатами верх
 #include "QuadraticEquation.h"
 #include "AbstractBase.h"
 #include "customExceptions.h"
+
+
 #define _CRTDBG_MAP_ALLOC
 #include <crtdbg.h>
 
@@ -45,16 +47,17 @@ int main()
 		Equation* eq3 = new LinearEquation(0, 5.1);
 		Equation* eq4 = new QuadraticEquation(0, 2.1, 3.1);
 
-		Equation** equations = new Equation * [4];
+		auto** equations = new Equation * [4];
 		equations[0] = eq;
 		equations[1] = eq2;
 		equations[2] = eq3;
 		equations[3] = eq4;
 
 		for (size_t i = 0; i < 4; i++) {
+			cout << "Equation " << i + 1 << ": ";
 			equations[i]->showRoot();
 		}
-		// Clean up
+
 		for (size_t i = 0; i < 4; i++) {
 			delete equations[i];
 		}
