@@ -15,4 +15,4 @@ public:
 	virtual EquationRoots roots() = 0;
 	virtual ~Equation() = default;
 };
-
+//
