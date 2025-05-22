@@ -32,5 +32,11 @@
     <ClInclude Include="LinearEquation.h">
       <Filter>Header Files\task1</Filter>
     </ClInclude>
+    <ClInclude Include="QuadraticEquation.h">
+      <Filter>Header Files\task1</Filter>
+    </ClInclude>
+    <ClInclude Include="EquationRoots.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -12,3 +12,10 @@ public:
 	NoSolutionsException()
 		: std::logic_error("The equation has no solutions") {}
 };
+
+class LinearEquationException
+	: public std::logic_error {
+public:
+	LinearEquationException()
+		: std::logic_error("The equation is linear") {}
+};

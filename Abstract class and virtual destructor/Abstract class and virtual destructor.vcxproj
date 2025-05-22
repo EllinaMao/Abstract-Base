@@ -132,7 +132,9 @@
   <ItemGroup>
     <ClInclude Include="Abstract Base.h" />
     <ClInclude Include="customExceptions.h" />
+    <ClInclude Include="EquationRoots.h" />
     <ClInclude Include="LinearEquation.h" />
+    <ClInclude Include="QuadraticEquation.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -3,18 +3,19 @@
 #include <iostream>
 #include <stdexcept>
 #include "Abstract Base.h"
+#include "EquationRoots.h"	
 #include "customExceptions.h"
 
 class LinearEquation : public Equation {
 private:
 	double mK;
 	double mB; // Коэффициенты линейного уравнения ax + b = 0
-
+	
 public:
 	LinearEquation() :mK(0), mB(0) {}
 	LinearEquation(double k, double b) : mK(k), mB(b) {}
 
-	double roots() override {
+	EquationRoots roots() override {
 		if (mK == 0 && mB == 0) {
 			throw InfiniteSolutionsException();
 		}
@@ -23,7 +24,7 @@ public:
 		}
 		double x = -mB / mK;
 
-		return x;
+		return EquationRoots(&x, 1);
 	}
 
 	

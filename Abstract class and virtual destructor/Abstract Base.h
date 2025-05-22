@@ -1,8 +1,7 @@
 ﻿#pragma once
 #include <iostream>
 #include "customExceptions.h"
-#include <cmath>
-#include <string>
+#include "EquationRoots.h"s
 #include <stdexcept>
 
 
@@ -13,7 +12,7 @@
 */
 class Equation {
 public:
-	virtual double roots() = 0; 
+	virtual EquationRoots roots() = 0;
 	virtual ~Equation() = default;
 };
 
