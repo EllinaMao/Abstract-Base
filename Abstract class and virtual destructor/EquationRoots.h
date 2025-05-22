@@ -6,13 +6,13 @@
 struct EquationRoots {
 private:
 	double* mRoots;
-	std::string mState;
+	std::string mRootsState;
 	size_t mCount;
 	
 
 public:
 	void SetState(std::string const& state) {
-		mState = state;
+		mRootsState = state;
 	}
 
 	void SetRoot(double const* roots, size_t count) {
@@ -28,20 +28,20 @@ public:
 			mRoots[i] = roots[i];
 		}
 		mCount = count;
-		mState = std::to_string(mCount) + (mCount == 1 ? " root" : " roots");	
+		mRootsState = std::to_string(mCount) + (mCount == 1 ? " root" : " roots");	
 	}
 
 
-	EquationRoots() : mRoots(nullptr), mState("No Roots"), mCount(0) {}
+	EquationRoots() : mRoots(nullptr), mRootsState("No Roots"), mCount(0) {}
 
 	EquationRoots(double const* roots, size_t count) : mCount(count) {
 		if (count <= 0) {
 			mRoots = nullptr;
-			mState = "No Roots";
+			mRootsState = "No Roots";
 			return;
 		}
 		mRoots = new double[mCount];
-		mState = std::to_string(mCount) + (mCount == 1 ? " root" : " roots");		
+		mRootsState = std::to_string(mCount) + (mCount == 1 ? " root" : " roots");		
 		for (size_t i = 0; i < mCount; ++i) {
 			mRoots[i] = roots[i];
 		}
@@ -49,7 +49,7 @@ public:
 	explicit EquationRoots(double const* roots) {
 		mCount++;
 		mRoots = new double[mCount];
-		mState = std::to_string(mCount) + (mCount == 1 ? " root" : " roots");
+		mRootsState = std::to_string(mCount) + (mCount == 1 ? " root" : " roots");
 		for (size_t i = 0; i < mCount; ++i) {
 			mRoots[i] = roots[i];
 		}
@@ -71,7 +71,7 @@ public:
        delete[] mRoots;  
        mCount = other.mCount;  
        mRoots = nullptr;  
-	   mState = other.mState;
+	   mRootsState = other.mRootsState;
        if (mCount > 0) {  
            mRoots = new double[mCount];  
            for (size_t i = 0; i < mCount; ++i) {  
@@ -89,7 +89,7 @@ public:
 		delete[] mRoots;
 		mRoots = newRoots;
 		mCount++;
-		mState = std::to_string(mCount) + (mCount == 1 ? " root" : " roots");
+		mRootsState = std::to_string(mCount) + (mCount == 1 ? " root" : " roots");
 	}
 
 	~EquationRoots() {
@@ -102,11 +102,11 @@ public:
 
 	void printRoots() const {
 		if (!mRoots) {
-			std::cout << mState << std::endl;
+			std::cout << mRootsState << std::endl;
 			return;
 		}
 		
-		std::cout << mState << std::endl;
+		std::cout << mRootsState << std::endl;
 		for (size_t i = 0; i < mCount; ++i) {
 			std::cout << mRoots[i] << " ";
 		}

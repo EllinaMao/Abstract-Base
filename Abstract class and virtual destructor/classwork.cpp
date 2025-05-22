@@ -31,14 +31,17 @@ Ellipse — эллипс с заданными координатами верх
 #include "customExceptions.h"
 
 
-#define _CRTDBG_MAP_ALLOC
-#include <crtdbg.h>
+//#define _CRTDBG_MAP_ALLOC
+//#include <crtdbg.h>
 
 using namespace std;
 
 int main()
 {
-	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+	//_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+	//_CrtSetReportMode(_CRT_ERROR, _CRTDBG_MODE_DEBUG);
+
+	cout << "Task1" << endl;
 
 	try {
 
@@ -63,11 +66,20 @@ int main()
 		}
 
 	delete[] equations;
+
+	system("pause");
+	system("cls");
+
 	}
 
 	catch (...) {
 		cout << "An unknown error occurred." << endl;
 	}
+
+	cout << "Task2" << endl;
+
+
+
 	return 0;
 
 }
