@@ -23,7 +23,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Abstract Base.h">
+    <ClInclude Include="AbstractBase.h">
       <Filter>Header Files\task1</Filter>
     </ClInclude>
     <ClInclude Include="customExceptions.h">
@@ -36,7 +36,7 @@
       <Filter>Header Files\task1</Filter>
     </ClInclude>
     <ClInclude Include="EquationRoots.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\task1</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

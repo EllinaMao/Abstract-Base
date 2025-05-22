@@ -130,7 +130,7 @@
     <ClCompile Include="classwork.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Abstract Base.h" />
+    <ClInclude Include="AbstractBase.h" />
     <ClInclude Include="customExceptions.h" />
     <ClInclude Include="EquationRoots.h" />
     <ClInclude Include="LinearEquation.h" />

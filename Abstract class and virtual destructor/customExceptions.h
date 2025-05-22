@@ -1,16 +1,17 @@
 ﻿#pragma once
+#include <stdexcept>
 
-class InfiniteSolutionsException : public std::logic_error {
+class InfiniteSolutionsException : public std::domain_error {
 public:
 	InfiniteSolutionsException()
-		: std::logic_error("The equation has infinitely many solutions") {}
+		: std::domain_error("The equation has infinitely many solutions") {}
 };
 
 class NoSolutionsException
-	: public std::logic_error {
+	: public std::domain_error {
 public:
 	NoSolutionsException()
-		: std::logic_error("The equation has no solutions") {}
+		: std::domain_error("The equation has no solutions") {}
 };
 
 class LinearEquationException

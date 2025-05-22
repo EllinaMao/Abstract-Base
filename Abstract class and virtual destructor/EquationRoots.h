@@ -1,20 +1,39 @@
 ﻿#pragma once
 
 #include <iostream>
+#include <string>
 
 struct EquationRoots {
 private:
 	double* mRoots;
+	string state;
 	size_t mCount;
 
+
 public:
-	EquationRoots() : mRoots(nullptr), mCount(0) {}
-	EquationRoots(double* roots, size_t count) : mCount(count) {
+	void SetRoot(double* roots, size_t count) {
 		if (count <= 0) {
 			mRoots = nullptr;
 			return;
 		}
+		if (mRoots) {
+			delete[] mRoots;
+		}
+		mRoots = new double[count];
+		for (size_t i = 0; i < count; ++i) {
+			mRoots[i] = roots[i];
+		}
+		mCount = count;
+	}
+	EquationRoots() : mRoots(nullptr), mCount(0), state("No Roots") {}
+	EquationRoots(double* roots, size_t count) : mCount(count) {
+		if (count <= 0) {
+			mRoots = nullptr;
+			state = "No Roots";
+			return;
+		}
 		mRoots = new double[mCount];
+		state = std::to_string(count) + " roots";
 		for (size_t i = 0; i < mCount; ++i) {
 			mRoots[i] = roots[i];
 		}
@@ -62,17 +81,29 @@ public:
 	}
 
 	~EquationRoots() {
+		if (!mRoots) {
+			return;
+		}
 		delete[] mRoots;
+		mRoots = nullptr;
 	}
 	void printRoots() const {
-		if (mCount == 0) {
+		if (!mRoots) {
 			std::cout << "No roots" << std::endl;
 			return;
 		}
-		std::cout << "Roots: ";
+		
 		for (size_t i = 0; i < mCount; ++i) {
 			std::cout << mRoots[i] << " ";
 		}
 		std::cout << std::endl;
 	}
+
+	double* getRoots() const {
+		return mRoots;
+	}
+	size_t getCount() const {
+		return mCount;
+	}
+
 };
