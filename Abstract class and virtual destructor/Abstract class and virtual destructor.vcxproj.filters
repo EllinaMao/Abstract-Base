@@ -13,7 +13,10 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\task1">
+    <Filter Include="Header Files\task2 shapes">
+      <UniqueIdentifier>{cd54be22-ee3f-4c3b-9c43-d6dd91bf03b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\task1 equations">
       <UniqueIdentifier>{7947ab63-2391-488f-8034-7f9f98a95b4c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -21,22 +24,64 @@
     <ClCompile Include="classwork.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="EquationRoots.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LinearEquation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QuadraticEquation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Rectangle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Square.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Circle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Ellipse.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbstractBase.h">
-      <Filter>Header Files\task1</Filter>
+      <Filter>Header Files\task1 equations</Filter>
+    </ClInclude>
+    <ClInclude Include="LinearEquation.h">
+      <Filter>Header Files\task1 equations</Filter>
+    </ClInclude>
+    <ClInclude Include="QuadraticEquation.h">
+      <Filter>Header Files\task1 equations</Filter>
+    </ClInclude>
+    <ClInclude Include="EquationRoots.h">
+      <Filter>Header Files\task1 equations</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape.h">
+      <Filter>Header Files\task2 shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="Rectangle.h">
+      <Filter>Header Files\task2 shapes</Filter>
     </ClInclude>
     <ClInclude Include="customExceptions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="LinearEquation.h">
-      <Filter>Header Files\task1</Filter>
+    <ClInclude Include="Square.h">
+      <Filter>Header Files\task2 shapes</Filter>
     </ClInclude>
-    <ClInclude Include="QuadraticEquation.h">
-      <Filter>Header Files\task1</Filter>
+    <ClInclude Include="MathExceptions.h">
+      <Filter>Header Files\task1 equations</Filter>
     </ClInclude>
-    <ClInclude Include="EquationRoots.h">
-      <Filter>Header Files\task1</Filter>
+    <ClInclude Include="FileException.h">
+      <Filter>Header Files\task2 shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="Circle.h">
+      <Filter>Header Files\task2 shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="Ellipse.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

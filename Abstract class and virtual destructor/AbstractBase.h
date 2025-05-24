@@ -13,7 +13,7 @@
 class Equation {
 public:
 	virtual void roots() = 0;
-	virtual void showRoot() = 0;
+	virtual void showRoot() const = 0;
 	virtual ~Equation() = default;
 };
 //

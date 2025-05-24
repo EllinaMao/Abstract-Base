@@ -1,22 +1,14 @@
 ﻿#pragma once
-#include <stdexcept>
+#include <exception>
+#include <string>
 
-class InfiniteSolutionsException : public std::domain_error {
+
+class CustomException : public std::exception {
+protected:
+    std::string message;
 public:
-	InfiniteSolutionsException()
-		: std::domain_error("The equation has infinitely many solutions") {}
+    explicit CustomException(const std::string& msg) : message(msg) {}
+    const char* what() const noexcept override { return message.c_str(); }
 };
 
-class NoSolutionsException
-	: public std::domain_error {
-public:
-	NoSolutionsException()
-		: std::domain_error("The equation has no solutions") {}
-};
 
-class LinearEquationException
-	: public std::logic_error {
-public:
-	LinearEquationException()
-		: std::logic_error("The equation is linear") {}
-};

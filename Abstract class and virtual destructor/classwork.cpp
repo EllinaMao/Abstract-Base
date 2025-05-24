@@ -2,8 +2,7 @@
 // Абстрактный класс и виртуальный деструктор
 Задание 1
 Создать абстрактный базовый класс с виртуальной функцией — корни уравнения.Создать производные классы : класс линейных уравнений и класс квадратных уравнений.Определить функцию вычисления корней уравнений.
-// custom task:
-Создать массив указателей на базовый класс и заполнить его объектами производных классов.Вывести на экран корни уравнений.
+
 //////////////////////////
 Задание 2
 Создайте абстрактный класс Shape для рисования плоских фигур.Определите виртуальные методы :
@@ -20,7 +19,7 @@ Ellipse — эллипс с заданными координатами верх
 Создайте массив фигур, сохраните фигуры в файл, загрузите в другой массив и отобразите информацию о каждой из фигур.
 
 */
-
+	
 
 
 #include <iostream>
@@ -29,7 +28,13 @@ Ellipse — эллипс с заданными координатами верх
 #include "QuadraticEquation.h"
 #include "AbstractBase.h"
 #include "customExceptions.h"
-
+#include "Shape.h"
+#include "Square.h"
+#include "Rectangle.h"
+#include "Circle.h"
+#include "Ellipse.h"
+#include "FileException.h"
+#include <memory>
 
 //#define _CRTDBG_MAP_ALLOC
 //#include <crtdbg.h>
@@ -44,17 +49,11 @@ int main()
 	cout << "Task1" << endl;
 
 	try {
-
-		Equation* eq = new LinearEquation(4.5, 5.1);
-		Equation* eq2 = new QuadraticEquation(1.1, -3.1, 2.1);
-		Equation* eq3 = new LinearEquation(0, 5.1);
-		Equation* eq4 = new QuadraticEquation(0, 2.1, 3.1);
-
 		auto** equations = new Equation * [4];
-		equations[0] = eq;
-		equations[1] = eq2;
-		equations[2] = eq3;
-		equations[3] = eq4;
+		equations[0] = new LinearEquation(4.5, 5.1);
+		equations[1] = new QuadraticEquation(1.1, -3.1, 2.1);
+		equations[2] = new LinearEquation(0, 5.1);
+		equations[3] = new QuadraticEquation(0, 2.1, 3.1);
 
 		for (size_t i = 0; i < 4; i++) {
 			cout << "Equation " << i + 1 << ": ";
@@ -78,7 +77,72 @@ int main()
 
 	cout << "Task2" << endl;
 
+	try {
+		ofstream outFile("shapes.txt", ios::out | ios::trunc);
+		if (!outFile) {
+			throw FileWriteException();
+		}
+		size_t shapeCount = 4;
 
+		Shape** shapes = new Shape * [shapeCount];
+
+		shapes[0] = new Square(10, 20, 30);
+		shapes[1] = new Rectangle(15, 25, 5, 10);
+		shapes[2] = new Circle(30, 40, 20);
+		shapes[3] = new Ellipse(50, 60, 70, 80);
+
+		{
+			for (size_t i = 0; i < shapeCount; i++) {
+				shapes[i]->Save(outFile);
+			}
+			outFile.close();
+			cout << "Shapes saved to file." << endl;
+
+			ifstream inFile("shapes.txt", ios::in);
+			if (!inFile) {
+				throw FileNotFoundException();
+			}
+
+			inFile.close();
+		}
+
+		// Load shapes from file
+		{
+			ifstream inFile("shapes.txt", ios::in);
+			if (!inFile) {
+				throw FileNotFoundException();
+			}
+			for (size_t i = 0; i < shapeCount; i++) {
+				shapes[i]->Load(inFile);
+			}
+			inFile.close();
+			cout << "Shapes loaded from file." << endl;
+		}
+
+		// Display shapes
+
+		for (size_t i = 0; i < shapeCount; i++) {
+			cout << string(50, '-') << endl;
+			cout << "Shape " << i + 1 << ":" << endl;
+			shapes[i]->Show();
+			cout << endl;
+		}
+
+		
+	}
+	catch (const FileException& e) {
+		cout << "File error: " << e.what() << endl;
+
+	}
+	catch (const CustomException& e) {
+		cout << "Custom error: " << e.what() << endl;
+	}
+	catch (const std::exception& e) {
+		cout << "Standard error: " << e.what() << endl;
+	}
+	catch (...) {
+		cout << "An unknown error occurred." << endl;
+	}
 
 	return 0;
 

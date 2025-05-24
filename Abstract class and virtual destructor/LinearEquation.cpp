@@ -1,14 +1,33 @@
 ﻿#include "LinearEquation.h"
 
-double LinearEquation::roots()
+void LinearEquation::roots()
 {
-	if (mK == 0 && mB == 0) {
-		throw InfiniteSolutionsException();
-	}
-	if (mK == 0 && mB != 0) {
-		throw NoSolutionsException();
-	}
-	double x = -mB / mK;
+    try {
+        if (mK == 0 && mB == 0) {
+            throw InfiniteSolutionsException();
+        }
+        if (mK == 0 && mB != 0) {
+            throw NoSolutionsException();
+        }
+        short size = 1;
+        auto* root = new double[size];
+        root[0] = -mB / mK;
+        mRoots.SetRoot(root, size);
+        delete[] root;
+        return;
+    }
+    catch (const InfiniteSolutionsException& e) {
+        std::cout << e.what() << std::endl;
+        mRoots.SetState(std::string("Infinite solutions"));
+    }
+    catch (const NoSolutionsException& e) {
+        std::cerr << e.what() << std::endl;
+        mRoots.SetState(std::string("No solution"));
+    }
+}
 
-	return x;
+void LinearEquation::showRoot() const
+{
+    std::cout << "Root(s) of the linear equation: ";
+    mRoots.printRoots();
 }

@@ -127,14 +127,28 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Circle.cpp" />
     <ClCompile Include="classwork.cpp" />
+    <ClCompile Include="Ellipse.cpp" />
+    <ClCompile Include="EquationRoots.cpp" />
+    <ClCompile Include="LinearEquation.cpp" />
+    <ClCompile Include="QuadraticEquation.cpp" />
+    <ClCompile Include="Rectangle.cpp" />
+    <ClCompile Include="Square.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbstractBase.h" />
+    <ClInclude Include="Circle.h" />
     <ClInclude Include="customExceptions.h" />
+    <ClInclude Include="Ellipse.h" />
     <ClInclude Include="EquationRoots.h" />
+    <ClInclude Include="FileException.h" />
     <ClInclude Include="LinearEquation.h" />
+    <ClInclude Include="MathExceptions.h" />
     <ClInclude Include="QuadraticEquation.h" />
+    <ClInclude Include="Rectangle.h" />
+    <ClInclude Include="Shape.h" />
+    <ClInclude Include="Square.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
